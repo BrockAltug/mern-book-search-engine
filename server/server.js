@@ -1,8 +1,9 @@
 const express = require('express');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
-const cors = require('cors'); // Import CORS
+const cors = require('cors');
 const path = require('path');
+require('dotenv').config(); // Load environment variables
 const { authMiddleware } = require('./utils/auth');
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -20,19 +21,22 @@ const server = new ApolloServer({
 const startApolloServer = async () => {
   await server.start();
 
-  // Enable CORS
+  // Enable CORS for requests from the client
   app.use(cors({
-    origin: 'http://localhost:3000', // Allow requests from the client
-    credentials: true, // Allow cookies or authorization headers
+    origin: process.env.CLIENT_ORIGIN || 'http://localhost:3000',
+    credentials: true,
   }));
 
+  // Parse request bodies as JSON
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
+  // Attach the Apollo GraphQL middleware
   app.use('/graphql', expressMiddleware(server, {
     context: authMiddleware,
   }));
 
+  // Serve static files in production
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));
 
@@ -41,10 +45,11 @@ const startApolloServer = async () => {
     });
   }
 
+  // Connect to MongoDB and start the server
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
+      console.log(`GraphQL playground available at http://localhost:${PORT}/graphql`);
     });
   });
 };
