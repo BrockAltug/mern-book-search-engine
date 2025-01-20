@@ -1,0 +1,36 @@
+[
+  {
+    "username": "johndoe",
+    "books": [
+      {
+        "bookId": "1",
+        "authors": ["Author One"],
+        "description": "A description of Book One.",
+        "title": "Book One",
+        "image": "https://example.com/book1.jpg",
+        "link": "https://example.com/book1"
+      },
+      {
+        "bookId": "2",
+        "authors": ["Author Two"],
+        "description": "A description of Book Two.",
+        "title": "Book Two",
+        "image": "https://example.com/book2.jpg",
+        "link": "https://example.com/book2"
+      }
+    ]
+  },
+  {
+    "username": "janedoe",
+    "books": [
+      {
+        "bookId": "3",
+        "authors": ["Author Three"],
+        "description": "A description of Book Three.",
+        "title": "Book Three",
+        "image": "https://example.com/book3.jpg",
+        "link": "https://example.com/book3"
+      }
+    ]
+  }
+]
