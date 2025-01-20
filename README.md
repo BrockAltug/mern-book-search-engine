@@ -11,7 +11,6 @@
 7. [Setup and Installation](#setup-and-installation)
    - [Prerequisites](#prerequisites)
    - [Steps to Run Locally](#steps-to-run-locally)
-   - [Deploying to Render](#deploying-to-render)
 8. [Summary](#summary)
 
 ## Overview
@@ -120,14 +119,6 @@ Users can search for books, create accounts, log in, save books to their profile
    ```
 
 5. Open your browser and navigate to `http://localhost:3000`.
-
-### Deploying to Render
-
-1. Create a new MongoDB cluster on **MongoDB Atlas** and get the connection URI.
-2. Sign up on [Render](https://render.com) and create a new web service for the server.
-3. Add the environment variables (`MONGODB_URI`, `JWT_SECRET`, and `PORT`) in the Render dashboard.
-4. Deploy the server by connecting your GitHub repository to Render.
-5. Deploy the React client similarly by setting the build command to `npm run build` and the start command to `serve -s build`.
 
 ## Summary
 
